@@ -39,8 +39,7 @@ LOCAL_CLANG_CFLAGS += \
 
 LOCAL_CFLAGS := \
     -DLINUX -DANDROID -g -Wall -Wno-unused \
-    -DPSBVIDEO_LOG_ENABLE \
-    -DPSBVIDEO_MSVDX_DEC_TILING
+    -DPSBVIDEO_LOG_ENABLE
 
 LOCAL_C_INCLUDES := \
     $(call include-path-for, libhardware)/hardware \
@@ -53,7 +52,7 @@ LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/hwdefs
 
 LOCAL_SHARED_LIBRARIES += libdl libdrm libwsbm libcutils \
-    libutils libbinder libhardware liblog
+    libutils libbinder libhardware liblog libva
 
 LOCAL_SRC_FILES := \
     object_heap.c \
@@ -110,7 +109,8 @@ LOCAL_CFLAGS += \
     -DPSBVIDEO_MRFL_VPP \
     -DPSBVIDEO_MRFL \
     -DSLICE_HEADER_PARSING \
-    -DPSBVIDEO_VXD392 -DPSBVIDEO_MSVDX_EC
+    -DPSBVIDEO_VXD392 -DPSBVIDEO_MSVDX_EC \
+    -DPSBVIDEO_MSVDX_DEC_TILING
 
 ifeq ($(TARGET_HAS_ISV),true)
 LOCAL_SRC_FILES += \
@@ -147,7 +147,7 @@ endif
 
 else
 
-ifneq ($(filter $(TARGET_BOARD_PLATFORM),clovertrail),)
+ifneq ($(filter $(TARGET_BOARD_PLATFORM),clovertrail medfield sc1),)
 LOCAL_SRC_FILES += \
     pnw_H263ES.c \
     pnw_H264ES.c \
@@ -161,6 +161,11 @@ LOCAL_SRC_FILES += \
 
 LOCAL_CFLAGS += \
     -DPSBVIDEO_MFLD
+
+ifeq ($(TARGET_BOARD_PLATFORM),clovertrail)
+LOCAL_CFLAGS += \
+    -DPSBVIDEO_MSVDX_DEC_TILING
+endif
 
 else
 LOCAL_SRC_FILES += \
