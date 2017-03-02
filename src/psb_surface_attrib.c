@@ -275,6 +275,9 @@ VAStatus psb_CreateSurfacesForUserPtr(
     VAStatus vaStatus = VA_STATUS_SUCCESS;
     int i, height_origin;
     unsigned long buffer_stride;
+#ifndef PSBVIDEO_MSVDX_DEC_TILING
+    (void)tiling;
+#endif
 
     /* silient compiler warning */
     unsigned int width = (unsigned int)Width;
@@ -428,6 +431,9 @@ VAStatus  psb_CreateSurfaceFromKBuf(
     INIT_DRIVER_DATA
     VAStatus vaStatus = VA_STATUS_SUCCESS;
     unsigned long buffer_stride;
+#ifndef PSBVIDEO_MSVDX_DEC_TILING
+    (void)tiling;
+#endif
 
     /* silient compiler warning */
     unsigned int width = (unsigned int)_width;

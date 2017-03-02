@@ -86,6 +86,9 @@ do {                                                            \
 static int get_surface_stride(int width, int tiling)
 {
     int stride = 0;
+#ifndef PSBVIDEO_MSVDX_DEC_TILING
+    (void)tiling;
+#endif
 
     if (0) {
         ;
