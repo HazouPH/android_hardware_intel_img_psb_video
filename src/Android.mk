@@ -160,7 +160,7 @@ LOCAL_SRC_FILES += \
     tng_ved_scaling.c
 
 LOCAL_CFLAGS += \
-    -DPSBVIDEO_MFLD
+    -DPSBVIDEO_MFLD -DCLOVERTRAIL
 
 ifeq ($(TARGET_BOARD_PLATFORM),clovertrail)
 LOCAL_CFLAGS += \
